@@ -197,11 +197,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return sign
     }
     
+    //the following 3 methods return a list of location/start time/ end time based on the user's input
+    
     func get_location_list() -> [String]{
         //this
         var result = [String]()
         for i in 1...self.loc_num{
             if i == 1{
+                // it's location, not location 1
                 result.append(self.name_to_tf[data_list2[0]]!.text)
             }
             else{
@@ -240,6 +243,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func hitConfirm(sender: UIButton){
+        // action taken when user presses confirm button
         println("Confirm")
         self.clear_Interface_2()
         self.resetData()
@@ -248,12 +252,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func hitGoBack(sender: UIButton){
+        // action taken when user presses go back button
         println("Go back")
         self.clear_Interface_2()
         self.resetData()
         self.draw_Interface_1()
     }
     
+    //reinitalize all the variables
     func resetData(){
         self.loc_num = 1
         self.name_to_label_1 = [String: UILabel]()
@@ -263,6 +269,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.personInfo = nil
     }
     
+    // add personInfo into database
     func addData(){
         
     }
@@ -290,13 +297,50 @@ class PersonData{
     var location_list: [String]
     var time_list: [String]
 
-    func get_between_time(start_time: [String], end_time: [String]){
+    class func get_between_time(start_time: String, end_time: String) -> String{
+        //return the hours between start time and end time
+        let INVALID_RESULT = "0h0m"
+        var hour: String
+        var min: String
+        var start_hm = split(start_time) {$0 == ":"}        //[0] is hour and [1] is minute
+        var end_hm = split(end_time) {$0 == ":"}
         
+        if start_hm.count == 2 && end_hm.count == 2{        //check if the input format is valid
+            var start_hour = start_hm[0].toInt()
+            var start_min = start_hm[1].toInt()
+            var end_hour = end_hm[0].toInt()
+            var end_min = end_hm[1].toInt()
+            
+            //checking if input can be convert to integer
+            if start_hour == nil || start_min == nil || end_hour == nil || end_min == nil {
+                return INVALID_RESULT
+            }
+            
+            if start_min > end_min{                     //check if start min is greater than end min
+                end_hour = end_hour! - 1
+                min = String(60 + end_min! - start_min!) + "m"
+            }
+            else{
+                min = String(end_min! - start_min!) + "m"
+            }
+            if start_hour > end_hour{                   // you can't work for negative hours
+
+                return INVALID_RESULT
+            }
+            else{
+                hour = String(end_hour! - start_hour!) + "h"
+            }
+            return hour + min
+        }
+        else{
+  
+            return INVALID_RESULT
+        }
     }
     class func get_time_list(st_list: [String], et_list: [String]) -> [String]{
         var result = [String]()
         for i in 0...(et_list.count - 1) {
-            result.append("0h0m")
+            result.append(PersonData.get_between_time(st_list[i], end_time: et_list[i]))
         }
         return result
     }
