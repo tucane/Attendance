@@ -23,11 +23,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let data_list2 = ["Location", "Start Time", "End Time"]
     let size_list2 = [80, 90, 80]
+    
+    //database variables
+    var database: FMDatabase!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        draw_Interface_1()
+        self.initDatabase()
+        self.draw_Interface_1()
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,13 +116,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func hitAddLocation(sender: UIButton){
         // action taken when user presses addlocation button
-        self.loc_num += 1
-        self.addSet(self.loc_num)
+        // limited to at most 3 locations each day
+        if self.loc_num < 3{
+            self.loc_num += 1
+            self.addSet(self.loc_num)
+        }
     }
     
     func hitEnter(sender: UIButton){
         // action taken when user presses enter button
-        println("Enter")
         
         self.personInfo = PersonData(cn: self.name_to_tf[data_list[0]]!.text, en: self.name_to_tf[data_list[1]]!.text, date: self.name_to_tf[data_list[2]]!.text, location_list: get_location_list(), st_list: get_st_list(), et_list: get_et_list())
         self.clear_Interface_1()
@@ -244,8 +250,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func hitConfirm(sender: UIButton){
         // action taken when user presses confirm button
-        println("Confirm")
         self.clear_Interface_2()
+        self.addData()
         self.resetData()
         self.draw_Interface_1()
         
@@ -253,7 +259,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func hitGoBack(sender: UIButton){
         // action taken when user presses go back button
-        println("Go back")
         self.clear_Interface_2()
         self.resetData()
         self.draw_Interface_1()
@@ -271,7 +276,51 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // add personInfo into database
     func addData(){
+        if self.database.open(){
+            var locations = [String]()
+            var hours = [String]()
+            for i in 0...2{
+                if (i + 1) <= self.loc_num{
+                    locations.append(self.personInfo!.location_list[i])
+                    hours.append(self.personInfo!.time_list[i])
+                }
+                else{
+                    locations.append("")
+                    hours.append ("")
+                }
+            }
+            let insertSQL = "INSERT INTO WORKERS (company_name, employee_name, date, location_1, hour_1, location_2, hour_2, location_3, hour_3) VALUES ('\(self.personInfo!.company_name)', '\(self.personInfo!.employee_name)', '\(self.personInfo!.date)', '\(locations[0])', '\(hours[0])', '\(locations[1])', '\(hours[1])', '\(locations[2])', '\(hours[2])')"
+            let result = self.database.executeUpdate(insertSQL,
+                withArgumentsInArray: nil)
+            if !result{
+                println("Failed Action")
+            }
+            else{
+                println("Contact added")
+            }
+        }
+        else{
+            println("Cannot Find Database")
+        }
         
+    }
+    
+    func searchName(name: String){
+        if self.database.open(){
+            //let querySQL = "SELECT employee_name, company_name, date FROM WORKERS WHERE employee_name = '\(name)'"
+            let querySQL = "SELECT employee_name, company_name, date, location_1, hour_1 FROM WORKERS"
+            let results:FMResultSet = self.database.executeQuery(querySQL,
+                withArgumentsInArray: nil)
+            while results.next() == true{
+                
+                println(results.stringForColumn("employee_name"))
+                println(results.stringForColumn("company_name"))
+                println(results.stringForColumn("date"))
+
+
+            }
+        }
+        self.database.close()
     }
     
     func clear_Interface_2(){
@@ -286,6 +335,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
+    
+    func initDatabase(){
+        let filemgr = NSFileManager.defaultManager()
+        let dirPaths =
+        NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+            .UserDomainMask, true)
+        let docsDir = dirPaths[0] as! String
+        var databasePath = docsDir.stringByAppendingPathComponent(
+            "mydata.db")
+        self.database = FMDatabase(path: databasePath as String)
+
+        if self.database.open(){
+            let sql_command = "CREATE TABLE IF NOT EXISTS WORKERS (company_name TEXT, employee_name TEXT, date TEXT, location_1 TEXT, hour_1 TEXT, location_2 TEXT, hour_2 TEXT, location_3 TEXT, hour_3 TEXT)"
+            if !self.database.executeStatements(sql_command) {
+                println("Unable to create database")
+            }
+            self.database.close()
+        }
+        self.searchName("")
+        
+    }
+    
 
 
 }

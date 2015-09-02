@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2415ABA01B92A6DB00D73835 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2415AB9F1B92A6DB00D73835 /* libsqlite3.dylib */; };
+		2415ABAD1B92A79600D73835 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2415ABA41B92A79600D73835 /* FMDatabase.m */; };
+		2415ABAE1B92A79600D73835 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2415ABA61B92A79600D73835 /* FMResultSet.m */; };
+		2415ABAF1B92A79600D73835 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2415ABA81B92A79600D73835 /* FMDatabaseQueue.m */; };
+		2415ABB01B92A79600D73835 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2415ABAA1B92A79600D73835 /* FMDatabaseAdditions.m */; };
+		2415ABB11B92A79600D73835 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2415ABAC1B92A79600D73835 /* FMDatabasePool.m */; };
 		244B69471B8D519B00B2523B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B69461B8D519B00B2523B /* AppDelegate.swift */; };
 		244B69491B8D519B00B2523B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B69481B8D519B00B2523B /* ViewController.swift */; };
 		244B694C1B8D519B00B2523B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 244B694A1B8D519B00B2523B /* Main.storyboard */; };
@@ -26,6 +32,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2415AB9F1B92A6DB00D73835 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		2415ABA11B92A79600D73835 /* Attendance-App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Attendance-App-Bridging-Header.h"; sourceTree = "<group>"; };
+		2415ABA21B92A79600D73835 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		2415ABA31B92A79600D73835 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		2415ABA41B92A79600D73835 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		2415ABA51B92A79600D73835 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		2415ABA61B92A79600D73835 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		2415ABA71B92A79600D73835 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		2415ABA81B92A79600D73835 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		2415ABA91B92A79600D73835 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		2415ABAA1B92A79600D73835 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		2415ABAB1B92A79600D73835 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		2415ABAC1B92A79600D73835 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
 		244B69411B8D519B00B2523B /* Attendance-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Attendance-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		244B69451B8D519B00B2523B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		244B69461B8D519B00B2523B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2415ABA01B92A6DB00D73835 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +79,7 @@
 		244B69381B8D519B00B2523B = {
 			isa = PBXGroup;
 			children = (
+				2415AB9F1B92A6DB00D73835 /* libsqlite3.dylib */,
 				244B69431B8D519B00B2523B /* Attendance-App */,
 				244B69591B8D519B00B2523B /* Attendance-AppTests */,
 				244B69421B8D519B00B2523B /* Products */,
@@ -77,12 +98,24 @@
 		244B69431B8D519B00B2523B /* Attendance-App */ = {
 			isa = PBXGroup;
 			children = (
+				2415ABA21B92A79600D73835 /* FMDB.h */,
+				2415ABA31B92A79600D73835 /* FMDatabase.h */,
+				2415ABA41B92A79600D73835 /* FMDatabase.m */,
+				2415ABA51B92A79600D73835 /* FMResultSet.h */,
+				2415ABA61B92A79600D73835 /* FMResultSet.m */,
+				2415ABA71B92A79600D73835 /* FMDatabaseQueue.h */,
+				2415ABA81B92A79600D73835 /* FMDatabaseQueue.m */,
+				2415ABA91B92A79600D73835 /* FMDatabaseAdditions.h */,
+				2415ABAA1B92A79600D73835 /* FMDatabaseAdditions.m */,
+				2415ABAB1B92A79600D73835 /* FMDatabasePool.h */,
+				2415ABAC1B92A79600D73835 /* FMDatabasePool.m */,
 				244B69461B8D519B00B2523B /* AppDelegate.swift */,
 				244B69481B8D519B00B2523B /* ViewController.swift */,
 				244B694A1B8D519B00B2523B /* Main.storyboard */,
 				244B694D1B8D519B00B2523B /* Images.xcassets */,
 				244B694F1B8D519B00B2523B /* LaunchScreen.xib */,
 				244B69441B8D519B00B2523B /* Supporting Files */,
+				2415ABA11B92A79600D73835 /* Attendance-App-Bridging-Header.h */,
 			);
 			path = "Attendance-App";
 			sourceTree = "<group>";
@@ -212,8 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2415ABAF1B92A79600D73835 /* FMDatabaseQueue.m in Sources */,
+				2415ABAD1B92A79600D73835 /* FMDatabase.m in Sources */,
 				244B69491B8D519B00B2523B /* ViewController.swift in Sources */,
+				2415ABAE1B92A79600D73835 /* FMResultSet.m in Sources */,
+				2415ABB11B92A79600D73835 /* FMDatabasePool.m in Sources */,
 				244B69471B8D519B00B2523B /* AppDelegate.swift in Sources */,
+				2415ABB01B92A79600D73835 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,9 +378,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Attendance-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Attendance-App/Attendance-App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -350,9 +391,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Attendance-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Attendance-App/Attendance-App-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -409,6 +452,7 @@
 				244B69621B8D519B00B2523B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		244B69631B8D519B00B2523B /* Build configuration list for PBXNativeTarget "Attendance-AppTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +461,7 @@
 				244B69651B8D519B00B2523B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
