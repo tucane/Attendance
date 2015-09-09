@@ -304,11 +304,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
+    // search function
     func searchName(name: String){
         if self.database.open(){
-            //let querySQL = "SELECT employee_name, company_name, date FROM WORKERS WHERE employee_name = '\(name)'"
-            let querySQL = "SELECT employee_name, company_name, date, location_1, hour_1 FROM WORKERS"
+            let querySQL = "SELECT employee_name, company_name, date FROM WORKERS WHERE employee_name = '\(name)'"
+            //let querySQL = "SELECT employee_name, company_name, date, location_1, hour_1 FROM WORKERS"
             let results:FMResultSet = self.database.executeQuery(querySQL,
                 withArgumentsInArray: nil)
             while results.next() == true{
@@ -336,6 +336,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    //initalize the database
     func initDatabase(){
         let filemgr = NSFileManager.defaultManager()
         let dirPaths =
@@ -353,7 +354,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             self.database.close()
         }
-        self.searchName("")
+        //self.searchName("")
         
     }
     
@@ -408,6 +409,7 @@ class PersonData{
             return INVALID_RESULT
         }
     }
+    // get the time between for all the time in the list
     class func get_time_list(st_list: [String], et_list: [String]) -> [String]{
         var result = [String]()
         for i in 0...(et_list.count - 1) {
